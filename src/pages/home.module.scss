@@ -1,1 +1,57 @@
-// TODO
+.post {
+  margin-bottom: 3rem;
+  display: block;
+
+  h2 {
+    font-weight: bold;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+    text-align: left;
+    letter-spacing: -0.031rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray-100);
+  }
+
+  h5 {
+    font-weight: normal;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    color: var(--gray-300);
+  }
+
+  span {
+    font-weight: normal;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    color: var(--gray-300);
+    text-transform: capitalize;
+
+    &:not(:first-of-type) {
+      margin-left: 1.5rem;
+    }
+
+    .icons {
+      font-size: 1.25rem;
+      margin-right: 0.5rem;
+    }
+
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.btnMorePost {
+  display: block;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  text-align: left;
+  color: var(--pink-500);
+
+}
