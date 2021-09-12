@@ -1,1 +1,68 @@
-// TODO
+.bgImage {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  display: block;
+}
+
+.post {
+  padding: 4rem 0;
+
+  h1 {
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 3.125rem;
+    text-align: left;
+    letter-spacing: -0.031rem;
+    margin-bottom: 1rem;
+    color: var(--gray-100);
+  }
+
+  span {
+    font-weight: normal;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    color: var(--gray-300);
+    text-transform: capitalize;
+
+    &:not(:first-of-type) {
+      margin-left: 1.5rem;
+    }
+
+    .icons {
+      font-size: 1.25rem;
+      margin-right: 0.5rem;
+    }
+
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .bodyPost {
+    margin-top: 3rem;
+    font-family: Inter, sans-serif;
+    text-align: justify;
+
+    h3 {
+      font-size: 2.25rem;
+      line-height: 140%;
+      color: var(--white);
+    }
+
+    .text {
+      margin-top: 2.2rem;
+      color: var(--gray-300);
+      font-size: 1.125rem;
+      line-height: 150%;
+
+    }
+  }
+}
+

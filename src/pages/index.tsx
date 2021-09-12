@@ -60,7 +60,18 @@ export default function Home( { postsPagination }: HomeProps  ) {
               <a>
                 <h2>{post.data.title}</h2>
                 <h5>{post.data.subtitle}</h5>
-                <span> <FiCalendar className={styles.icons}/> {post.first_publication_date} </span>
+                <span>
+                  <FiCalendar className={styles.icons}/>
+                  {
+                    format(
+                      new Date(post.first_publication_date),
+                      'dd MMM yyyy',
+                      {
+                        locale: ptBR,
+                      },
+                    )
+                  }
+                </span>
                 <span> <FiUser className={styles.icons}/> {post.data.author} </span>
               </a>
             </Link>
@@ -87,18 +98,10 @@ export const getStaticProps: GetStaticProps = async () => {
     pageSize: 100,
   })
 
-  console.log(postsResponse)
-
   const posts = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        "dd MMM yyyy",
-        {
-          locale: ptBR,
-        }
-      ),
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,
