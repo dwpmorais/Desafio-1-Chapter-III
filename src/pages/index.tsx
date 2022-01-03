@@ -31,24 +31,22 @@ interface HomeProps {
 
 export default function Home( { postsPagination }: HomeProps  ) {
 
-  const [nextPage, setNextPage] = useState(postsPagination.next_page);
-  const [posts, setPosts] = useState<Post[]>(postsPagination.results);
+  const { results, next_page } = postsPagination;
+  const [posts, setPosts] = useState(results);
+  const [nextPage, setPageNext] = useState<string | null>(next_page);
 
-  async function loadNextPage() {
-    const response = await fetch(nextPage);
-    const data = await response.json();
-    const newPosts = data.results.map(post => ({
-      uid: post.uid,
-      first_publication_date: post.first_publication_date,
-      data: {
-        title: post.data.title,
-        subtitle: post.data.subtitle,
-        author: post.data.author
-      },
-    }));
-    setPosts([...posts, ...newPosts]);
-    setNextPage(data.next_page);
-  }
+  console.log('nextPage', nextPage)
+
+  const handlerLoadMorePosts = async (): Promise<void> => {
+    try {
+      const response = await (await fetch(nextPage + '&access_token=MC5ZVHo1ZlJBQUFDSUEyS1Q0.NH5w77-977-9fe-_vQjvv70677-977-9Re-_vVZrcVLvv71lTmIC77-977-9Yu-_ve-_ve-_ve-_vTIU')).json();
+      const newPosts = response.results as Post[];
+      setPageNext(response.next_page);
+      setPosts([...posts, ...newPosts]);
+    } catch (error) {
+      setPageNext(null);
+    }
+  };
 
   return(
     <div>
@@ -80,7 +78,7 @@ export default function Home( { postsPagination }: HomeProps  ) {
         }
 
         { nextPage &&
-          <button type="button" onClick={loadNextPage}>
+          <button className={styles.btnMorePost} onClick={handlerLoadMorePosts}>
             Carregar mais posts
           </button>
         }
@@ -95,7 +93,7 @@ export const getStaticProps: GetStaticProps = async () => {
     Prismic.predicates.at('document.type', 'posts')
   ], {
     fetch: ['posts.title', 'posts.subtitle', 'posts.content', 'posts.author'],
-    pageSize: 100,
+    pageSize: 2,
   })
 
   const posts = postsResponse.results.map(post => {

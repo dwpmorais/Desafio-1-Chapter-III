@@ -78,9 +78,9 @@ export default function Post({ post }: PostProps) {
               {post.data.content.map((content, index) => (
                 <div key={index}>
                   <h3> {content.heading} </h3>
-                  <div className={styles.text} dangerouslySetInnerHTML={{
-                    __html: RichText.asHtml(content.body),
-                  }}/>
+                  <div className={styles.text}
+                    dangerouslySetInnerHTML={{ __html: RichText.asHtml(content.body), }}
+                  />
                 </div>
               ))
               }
